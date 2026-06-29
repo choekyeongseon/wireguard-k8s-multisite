@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant S as company 호스트<br/>10.10.0.50
+    participant CG as wireguard-gw<br/>10.10.0.10 / wg0 .1
+    participant FG as FortiGate<br/>198.51.100.1
+    participant IG as wireguard-gw-idc<br/>wg0 .2 / 10.20.0.10
+    participant D as idc 타겟<br/>10.20.0.60:9100
+
+    S->>CG: dst 10.20.0.60 (static route via 10.10.0.10)
+    CG->>FG: WireGuard UDP/51820 (AllowedIPs 매칭, 암호화)
+    FG->>IG: DNAT 198.51.100.1 to 203.0.113.20
+    IG->>D: 복호화 후 포워딩, MASQUERADE src to 게이트웨이
+    D-->>IG: 게이트웨이로 응답 (리턴 라우트 불필요)
+    IG-->>CG: 터널로 다시 암호화
+    CG-->>S: 10.10.0.50으로 응답 포워딩

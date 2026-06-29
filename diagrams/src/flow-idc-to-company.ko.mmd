@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant S as idc 호스트<br/>10.20.0.60
+    participant IG as wireguard-gw-idc<br/>10.20.0.10 / wg0 .2
+    participant CG as wireguard-gw<br/>wg0 .1 / 10.10.0.10
+    participant D as company 타겟<br/>10.10.0.50:9090
+
+    S->>IG: dst 10.10.0.50 (static route via 10.20.0.10)
+    IG->>CG: WireGuard UDP/51820 to 203.0.113.10 (직접, FortiGate 없음)
+    CG->>D: 복호화 후 포워딩, MASQUERADE src to 게이트웨이
+    D-->>CG: 게이트웨이로 응답
+    CG-->>IG: 터널로 다시 암호화
+    IG-->>S: 10.20.0.60으로 응답 포워딩

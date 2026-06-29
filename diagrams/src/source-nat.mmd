@@ -1,0 +1,8 @@
+flowchart LR
+    R["remote host<br/>10.20.0.60"]
+    GW["local gateway 10.10.0.10<br/>MASQUERADE -s 10.20.0.0/24 -o eth0"]
+    L["local host<br/>10.10.0.50"]
+    R -->|"src 10.20.0.60 to dst 10.10.0.50"| GW
+    GW -->|"src rewritten to 10.10.0.10 (gateway)"| L
+    L -->|"reply to 10.10.0.10 (on-link, no route)"| GW
+    GW -.->|"back through tunnel"| R

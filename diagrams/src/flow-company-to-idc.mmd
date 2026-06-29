@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant S as company host<br/>10.10.0.50
+    participant CG as wireguard-gw<br/>10.10.0.10 / wg0 .1
+    participant FG as FortiGate<br/>198.51.100.1
+    participant IG as wireguard-gw-idc<br/>wg0 .2 / 10.20.0.10
+    participant D as idc target<br/>10.20.0.60:9100
+
+    S->>CG: dst 10.20.0.60 (static route via 10.10.0.10)
+    CG->>FG: WireGuard UDP/51820 (AllowedIPs match, encrypt)
+    FG->>IG: DNAT 198.51.100.1 to 203.0.113.20
+    IG->>D: decrypt, forward, then MASQUERADE src to gateway
+    D-->>IG: reply to gateway (no return route needed)
+    IG-->>CG: encrypt back over tunnel
+    CG-->>S: forward reply to 10.10.0.50

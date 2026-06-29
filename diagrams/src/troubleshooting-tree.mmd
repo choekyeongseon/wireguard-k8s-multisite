@@ -1,0 +1,10 @@
+flowchart TD
+    A{"wg show:<br/>recent handshake?"}
+    A -->|"no"| B{"idc side<br/>behind FortiGate?"}
+    B -->|"yes"| B1["check VIP DNAT +<br/>policy extintf=any (#4)"]
+    B -->|"no"| B2["check UDP/51820 open +<br/>PostUp iptables, not nft (#1,#2,#3)"]
+    A -->|"works then dies"| C["set PersistentKeepalive=25<br/>on both peers (#5)"]
+    A -->|"yes"| D{"remote subnet<br/>reachable from host?"}
+    D -->|"no route on host"| E["add static route<br/>via local gateway (#6)"]
+    D -->|"gateway ok, host fails"| F["check MASQUERADE<br/>-s remote-subnet (#6)"]
+    D -->|"counters rise, packets drop"| G["rp_filter=2 +<br/>ip_forward=1 (#7)"]
