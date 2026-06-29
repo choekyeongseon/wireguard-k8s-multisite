@@ -1,0 +1,14 @@
+flowchart LR
+    NET(("인터넷"))
+    subgraph C["company-site (직접 도달)"]
+        CG["wireguard-gw<br/>firewalld: 51820/udp<br/>+ masquerade"]
+    end
+    subgraph I["idc-site (FortiGate 뒤)"]
+        direction LR
+        FG["FortiGate 경계<br/>VIP 198.51.100.1:51820<br/>DNAT to 203.0.113.20<br/>extintf=any"]
+        UFW["호스트 방화벽 (ufw)<br/>51820/udp"]
+        WG["wireguard-gw-idc<br/>wg0 listen :51820"]
+        FG --> UFW --> WG
+    end
+    NET <--> CG
+    NET --> FG

@@ -1,0 +1,10 @@
+flowchart TD
+    A{"wg show:<br/>최근 핸드셰이크?"}
+    A -->|"없음"| B{"idc 측이<br/>FortiGate 뒤?"}
+    B -->|"예"| B1["VIP DNAT +<br/>정책 extintf=any 확인 (#4)"]
+    B -->|"아니오"| B2["UDP/51820 오픈 +<br/>PostUp은 iptables, nft 금지 (#1,#2,#3)"]
+    A -->|"되다가 끊김"| C["양 peer에<br/>PersistentKeepalive=25 (#5)"]
+    A -->|"있음"| D{"호스트에서<br/>원격 서브넷 도달?"}
+    D -->|"호스트 라우트 없음"| E["로컬 게이트웨이로<br/>static route 추가 (#6)"]
+    D -->|"게이트웨이 OK, 호스트 실패"| F["MASQUERADE<br/>-s 원격-서브넷 확인 (#6)"]
+    D -->|"카운터 증가, 드롭"| G["rp_filter=2 +<br/>ip_forward=1 (#7)"]

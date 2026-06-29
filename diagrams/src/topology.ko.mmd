@@ -1,0 +1,16 @@
+flowchart LR
+    subgraph CS["company-site (OpenStack)"]
+        direction TB
+        CW["K8s 워커<br/>10.10.0.0/24"]
+        CGW["wireguard-gw - Rocky 9<br/>eth0 10.10.0.10<br/>wg0 10.0.90.1<br/>FIP 203.0.113.10"]
+        CW <-->|"route 10.20.0.0/24<br/>via 10.10.0.10"| CGW
+    end
+    FG["FortiGate<br/>VIP 198.51.100.1:51820<br/>DNAT to 203.0.113.20"]
+    subgraph IS["idc-site (OpenStack)"]
+        direction TB
+        IGW["wireguard-gw-idc - Ubuntu 24.04<br/>ens3 10.20.0.10<br/>wg0 10.0.90.2<br/>FIP 203.0.113.20"]
+        IW["K8s 워커<br/>10.20.0.0/24"]
+        IGW <-->|"route 10.10.0.0/24<br/>via 10.20.0.10"| IW
+    end
+    CGW <==>|"WireGuard UDP/51820<br/>tunnel 10.0.90.0/30"| FG
+    FG <==> IGW

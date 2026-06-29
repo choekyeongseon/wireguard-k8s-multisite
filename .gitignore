@@ -1,0 +1,8 @@
+# never commit real keys or live configs
+*.key
+privatekey
+publickey
+wg0.conf
+!configs/wireguard/*.conf   # sample configs with placeholders are intentional
+*.pem
+.env
