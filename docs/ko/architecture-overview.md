@@ -96,8 +96,7 @@ FortiGate 객체는 [`configs/fortigate/dnat-vip.md`](../../configs/fortigate/dn
 | HTTPS 서비스 (Keystone API) | PASS — HTTP 200 |
 | HTTPS 서비스 (K8s API) | PASS — TLS 수립 |
 
-`wg show`/`ping`/`curl`로 언제든 다시 검증할 수 있습니다 —
-[트러블슈팅 › 검증 명령](troubleshooting.md)을 참고해 주세요.
+`wg show`/`ping`/`curl`로 언제든 다시 검증할 수 있습니다.
 
 ## 롤백
 
@@ -113,4 +112,4 @@ sysctl --system
 
 - [네트워크 토폴로지 & 주소 계획](network-topology.md)
 - [패킷 흐름 추적](packet-flow.md)
-- [트러블슈팅](troubleshooting.md)
+- [트러블슈팅 결정 트리](../../diagrams/troubleshooting-tree.ko.png)

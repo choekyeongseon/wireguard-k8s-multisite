@@ -56,8 +56,7 @@ wireguard-k8s-multisite/
 │   └── ko/                        # 한국어 문서
 │       ├── architecture-overview.md   # 설계, 방화벽 계층, 검증
 │       ├── network-topology.md        # 주소 & 라우트 설계 (도식)
-│       ├── packet-flow.md             # 방향별 흐름 (시퀀스 도식)
-│       └── troubleshooting.md         # 실제 함정 + 증상
+│       └── packet-flow.md             # 방향별 흐름 (시퀀스 도식)
 └── configs/
     ├── wireguard/
     │   ├── company-site-gw.conf   # Floating IP 직접
@@ -79,7 +78,8 @@ wireguard-k8s-multisite/
    VIP/정책을 추가합니다.
 5. OpenStack `host_routes`로 워커에 static route를 배포합니다.
 6. `wg show wg0`과 터널 경유 ping으로 검증합니다 —
-   [트러블슈팅](docs/ko/troubleshooting.md)을 참고해 주세요.
+   증상별 점검 순서는 [트러블슈팅 결정 트리](diagrams/troubleshooting-tree.ko.png)를
+   참고해 주세요.
 
 전체 설계는 [`docs/ko/architecture-overview.md`](docs/ko/architecture-overview.md)를
 참고해 주세요.

@@ -96,8 +96,7 @@ The reference deployment was validated end to end:
 | HTTPS service (Keystone API) | PASS — HTTP 200 |
 | HTTPS service (K8s API) | PASS — TLS established |
 
-Re-run these checks any time with `wg show`, `ping`, and `curl` — see
-[Troubleshooting › Verification commands](troubleshooting.md).
+Re-run these checks any time with `wg show`, `ping`, and `curl`.
 
 ## High availability (optional extension)
 
@@ -120,4 +119,4 @@ sysctl --system
 
 - [Network topology & addressing](network-topology.md)
 - [Packet flow walk-through](packet-flow.md)
-- [Troubleshooting](troubleshooting.md)
+- [Troubleshooting decision tree](../../diagrams/troubleshooting-tree.png)

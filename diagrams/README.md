@@ -10,7 +10,7 @@ The PNGs in this folder are **generated** from the Mermaid sources in
 | `src/flow-idc-to-company.mmd` / `.ko.mmd` | `flow-idc-to-company.png` / `.ko.png` | packet-flow |
 | `src/firewall-layers.mmd` / `.ko.mmd` | `firewall-layers.png` / `.ko.png` | architecture-overview |
 | `src/source-nat.mmd` / `.ko.mmd` | `source-nat.png` / `.ko.png` | network-topology |
-| `src/troubleshooting-tree.mmd` / `.ko.mmd` | `troubleshooting-tree.png` / `.ko.png` | troubleshooting |
+| `src/troubleshooting-tree.mmd` / `.ko.mmd` | `troubleshooting-tree.png` / `.ko.png` | README, architecture-overview |
 
 ## Regenerate
 

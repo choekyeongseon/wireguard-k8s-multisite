@@ -63,8 +63,7 @@ wireguard-k8s-multisite/
 │   ├── en/                        # English docs
 │   │   ├── architecture-overview.md   # design, firewall layers, validation
 │   │   ├── network-topology.md        # addressing & route design (diagram)
-│   │   ├── packet-flow.md             # per-direction flows (sequence diagrams)
-│   │   └── troubleshooting.md         # the real gotchas, with symptoms
+│   │   └── packet-flow.md             # per-direction flows (sequence diagrams)
 │   └── ko/                        # 한국어 문서 (same set)
 └── configs/
     ├── wireguard/
@@ -85,7 +84,9 @@ wireguard-k8s-multisite/
 4. Add the FortiGate VIP/policy from `configs/fortigate/dnat-vip.md` for the gateway
    that sits behind a firewall.
 5. Push the static route to workers via OpenStack `host_routes`.
-6. Validate with `wg show wg0` and a ping across the tunnel — see [troubleshooting](docs/en/troubleshooting.md).
+6. Validate with `wg show wg0` and a ping across the tunnel — see the
+   [troubleshooting decision tree](diagrams/troubleshooting-tree.png) for
+   symptom-by-symptom checks.
 
 See [`docs/en/architecture-overview.md`](docs/en/architecture-overview.md) for the full design.
 
